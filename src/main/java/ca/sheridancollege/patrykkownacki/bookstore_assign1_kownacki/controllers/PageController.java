@@ -1,6 +1,7 @@
 package ca.sheridancollege.patrykkownacki.bookstore_assign1_kownacki.controllers;
 
 import ca.sheridancollege.patrykkownacki.bookstore_assign1_kownacki.beans.Book;
+import ca.sheridancollege.patrykkownacki.bookstore_assign1_kownacki.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -17,7 +18,7 @@ import java.util.List;
 public class PageController {
 
     @Autowired
-    private List<Book> bookList = new ArrayList<>();
+    private BookService bookService;
 
     @GetMapping("/")
     public String home() {
@@ -30,7 +31,8 @@ public class PageController {
     @PostMapping("/postNewBook")
     public String postNewBook(@RequestParam String bookTitle, @RequestParam String bookAuthor, @RequestParam Double bookPrice ) {
         Random random = new Random();
-        bookList.add(new Book( String.valueOf(random.nextInt(900000) + 100000), bookTitle, bookAuthor, bookPrice));
+        bookService.bookList().add(new Book(String.valueOf(random.nextInt(900000) + 100000), bookTitle, bookAuthor, bookPrice));
+        System.out.println(bookService.bookList());
         return "availablebooks";
     }
     @GetMapping("/shoppingbooks")
