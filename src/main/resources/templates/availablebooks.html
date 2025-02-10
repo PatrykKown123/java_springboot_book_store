@@ -10,14 +10,14 @@
 <h1>Welcome to Patryk's Online Book Store!</h1>
 <header class="navigation" th:replace="fragments :: nav">
 </header>
-<h2>Add a book to book list</h2>
+<h3 style="margin-left: 20px">Add a book to book list</h3>
 <form method="post" action="/postNewBook">
-    <h3>Book Title: </h3>
+    <h4>Book Title: </h4>
     <input type="text" name="bookTitle"/>
-    <h3>Book Author: </h3>
+    <h4>Book Author: </h4>
     <input type="text" name="bookAuthor"/>
-    <h3>Book Price: </h3>
-    <input type="text" name="bookPrice"/><br>
+    <h4>Book Price: </h4>
+    <input type="text" name="bookPrice"/><br><br>
     <input type="submit"/>
 </form>
 <footer th:replace="fragments :: footer">
