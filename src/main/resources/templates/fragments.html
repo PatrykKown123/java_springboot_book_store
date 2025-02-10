@@ -2,10 +2,10 @@
 <body>
     <div th:fragment="nav">
         <nav>
-            <a href="#home">Home</a>
-            <a href="#available-books">Available Books</a>
-            <a href="#shopping-books">Shopping Books</a>
-            <a href="#checkout">Check Out Page</a>
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/availablebooks}">Available Books</a>
+            <a th:href="@{/shoppingbooks}">Shopping Books</a>
+            <a th:href="@{/checkout}">Check Out Page</a>
         </nav>
     </div>
     <div th:fragment="footer">
