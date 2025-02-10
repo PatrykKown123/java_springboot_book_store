@@ -38,7 +38,36 @@ form, input, form h4{
 form {
     margin-left: 20px;
 }
-
+table {
+    width: 25%;
+    border-collapse: collapse;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+th {
+    background-color: #63e663;
+    color: white;
+    text-align: left;
+    padding: 10px 15px;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+tr:hover {
+    background-color: #e1f5e1;
+}
 footer {
     text-align: center;
     padding: 20px;

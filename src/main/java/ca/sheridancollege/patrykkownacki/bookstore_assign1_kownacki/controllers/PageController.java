@@ -5,6 +5,7 @@ import ca.sheridancollege.patrykkownacki.bookstore_assign1_kownacki.service.Book
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,8 @@ public class PageController {
         return "index";
     }
     @GetMapping("/availablebooks")
-    public String availablebooks() {
+    public String availablebooks(Model model) {
+        model.addAttribute("books", bookService.bookList());
         return "availablebooks";
     }
     @PostMapping("/postNewBook")
@@ -33,7 +35,7 @@ public class PageController {
         Random random = new Random();
         bookService.bookList().add(new Book(String.valueOf(random.nextInt(900000) + 100000), bookTitle, bookAuthor, bookPrice));
         System.out.println(bookService.bookList());
-        return "availablebooks";
+        return "redirect:/availablebooks";
     }
     @GetMapping("/shoppingbooks")
     public String shoppingbooks() {

@@ -10,6 +10,22 @@
 <h1>Welcome to Patryk's Online Book Store!</h1>
 <header class="navigation" th:replace="fragments :: nav">
 </header>
+<table>
+    <tr>
+        <th>ISBN</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>Price</th>
+    </tr>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.bookISBN}"></td>
+        <td th:text="${book.bookTitle}"></td>
+        <td th:text="${book.bookAuthor}"></td>
+        <td th:text="${book.bookPrice}"></td>
+    </tr>
+    </tbody>
+</table>
 <h3 style="margin-left: 20px">Add a book to book list</h3>
 <form method="post" action="/postNewBook">
     <h4>Book Title: </h4>
