@@ -72,7 +72,7 @@ footer {
     text-align: center;
     padding: 20px;
     background-color: #f4f4f4;
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
     margin-top: 50px;

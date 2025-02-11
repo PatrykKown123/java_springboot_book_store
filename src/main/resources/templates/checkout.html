@@ -10,7 +10,22 @@
 <h1>Welcome to Patryk's Online Book Store!</h1>
 <header class="navigation" th:replace="fragments :: nav">
 </header>
-<table th:replace="fragments :: table">
+<table>
+    <tr>
+        <th>ISBN</th>
+        <th>TITLE</th>
+        <th>AUTHOR</th>
+        <th>Price</th>
+    </tr>
+    <tbody>
+    <h3 style="margin-left: 20px">Check out page!</h3>
+    <tr th:each="book : ${selectedBooks}">
+        <td th:text="${book.bookISBN}"></td>
+        <td th:text="${book.bookTitle}"></td>
+        <td th:text="${book.bookAuthor}"></td>
+        <td th:text="${book.bookPrice}"></td>
+    </tr>
+    </tbody>
 </table>
 <table>
     <thead>

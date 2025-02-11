@@ -2,6 +2,7 @@ package ca.sheridancollege.patrykkownacki.bookstore_assign1_kownacki.controllers
 
 import ca.sheridancollege.patrykkownacki.bookstore_assign1_kownacki.beans.Book;
 import ca.sheridancollege.patrykkownacki.bookstore_assign1_kownacki.service.BookService;
+import ca.sheridancollege.patrykkownacki.bookstore_assign1_kownacki.service.SelectedBookService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ public class PageController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private SelectedBookService selectedBooks;
+
     int bookCounter= 0;
     double sum = 0.0;
 
@@ -42,12 +46,17 @@ public class PageController {
         System.out.println(bookService.bookList());
         return "redirect:/availablebooks";
     }
-    @GetMapping("/addToCart/{bookPrice}")
-    public String addToCart(@PathVariable Double bookPrice, HttpSession session) {
+    @GetMapping("/addToCart/{bookISBN}/{bookTitle}/{bookAuthor}/{bookPrice}")
+    public String addToCart(@PathVariable String bookISBN,
+                            @PathVariable String bookTitle,
+                            @PathVariable String bookAuthor,
+                            @PathVariable double bookPrice,
+                            HttpSession session) {
         bookCounter++;
         sum += bookPrice;
         session.setAttribute("bookCounter", bookCounter);
         session.setAttribute("bookSum", sum);
+        selectedBooks.bookList().add(new Book(bookISBN, bookTitle, bookAuthor, bookPrice));
         //System.out.println("Total amount of books:  " + bookCounter + " sum: " + sum);
         return "redirect:/shoppingbooks";
     }
@@ -64,9 +73,10 @@ public class PageController {
     @GetMapping("/checkout")
     public String checkout(Model model,HttpSession session) {
         Double bookSum = (Double) session.getAttribute("bookSum");
+
         double tax = bookSum*0.13;
         double totalSum = bookSum + tax;
-        model.addAttribute("books", bookService.bookList());
+        model.addAttribute("selectedBooks", selectedBooks.bookList());
         model.addAttribute("bookSum", bookSum);
         model.addAttribute("tax", tax);
         model.addAttribute("totalSum", totalSum);

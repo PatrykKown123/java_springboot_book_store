@@ -26,7 +26,9 @@
         <td th:text="${book.bookAuthor}"></td>
         <td th:text="${book.bookPrice}"></td>
         <td>
-            <a th:href="@{/addToCart/{bookPrice}(bookPrice=${book.bookPrice})}">Add to cart</a>
+            <a th:href="@{/addToCart/{bookISBN}/{bookTitle}/{bookAuthor}/{bookPrice}(bookISBN=${book.bookISBN}, bookTitle=${book.bookTitle}, bookAuthor=${book.bookAuthor}, bookPrice=${book.bookPrice})}">
+                Add to cart
+            </a>
         </td>
     </tr>
     </tbody>
