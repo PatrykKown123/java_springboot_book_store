@@ -10,6 +10,28 @@
 <h1>Welcome to Patryk's Online Book Store!</h1>
 <header class="navigation" th:replace="fragments :: nav">
 </header>
+<h3 style="margin-left: 20px">Shopping Book page</h3>
+<table>
+    <tr>
+        <th>ISBN</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Price</th>
+        <th>Add to shopping cart</th>
+    </tr>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.bookISBN}"></td>
+        <td th:text="${book.bookTitle}"></td>
+        <td th:text="${book.bookAuthor}"></td>
+        <td th:text="${book.bookPrice}"></td>
+        <td>
+            <a th:href="@{/addToCart/{bookPrice}(bookPrice=${book.bookPrice})}">Add to cart</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
 
 <footer th:replace="fragments :: footer">
 </footer>
