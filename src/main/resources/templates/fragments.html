@@ -13,5 +13,23 @@
             &copy; 2025 Patryk's Online Book Store
         </footer>
     </div>
+    <div th:fragment="table">
+        <table>
+            <tr>
+                <th>ISBN</th>
+                <th>TITLE</th>
+                <th>AUTHOR</th>
+                <th>Price</th>
+            </tr>
+            <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.bookISBN}"></td>
+                <td th:text="${book.bookTitle}"></td>
+                <td th:text="${book.bookAuthor}"></td>
+                <td th:text="${book.bookPrice}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
