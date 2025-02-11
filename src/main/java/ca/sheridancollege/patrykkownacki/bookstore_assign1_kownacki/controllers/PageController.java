@@ -45,8 +45,9 @@ public class PageController {
     @GetMapping("/addToCart/{bookPrice}")
     public String addToCart(@PathVariable Double bookPrice, HttpSession session) {
         bookCounter++;
-        //sum += bookPrice;
+        sum += bookPrice;
         session.setAttribute("bookCounter", bookCounter);
+        session.setAttribute("bookSum", sum);
         //System.out.println("Total amount of books:  " + bookCounter + " sum: " + sum);
         return "redirect:/shoppingbooks";
     }
@@ -61,8 +62,14 @@ public class PageController {
         return "shoppingbooks";
     }
     @GetMapping("/checkout")
-    public String checkout(Model model) {
+    public String checkout(Model model,HttpSession session) {
+        Double bookSum = (Double) session.getAttribute("bookSum");
+        double tax = bookSum*0.13;
+        double totalSum = bookSum + tax;
         model.addAttribute("books", bookService.bookList());
+        model.addAttribute("bookSum", bookSum);
+        model.addAttribute("tax", tax);
+        model.addAttribute("totalSum", totalSum);
         return "checkout";
     }
 }

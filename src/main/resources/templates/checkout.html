@@ -12,6 +12,42 @@
 </header>
 <table th:replace="fragments :: table">
 </table>
+<table>
+    <thead>
+    <tr>
+        <th>Sub-total:</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${bookSum}"></td>
+    </tr>
+    </tbody>
+</table>
+<table>
+    <thead>
+    <tr>
+        <th>Tax: </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${tax}"></td>
+    </tr>
+    </tbody>
+</table>
+<table>
+    <thead>
+    <tr>
+        <th>Total: </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${totalSum}"></td>
+    </tr>
+    </tbody>
+</table>
 <footer th:replace="fragments :: footer">
 </footer>
 
